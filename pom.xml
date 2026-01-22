@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>bookmyplan</artifactId>
-	<version>0.0.1</version>
+	<version>1.1</version>
 	<name>bookmyplan</name>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
