@@ -11,8 +11,13 @@ public class railwayscontroller {
         return "Hello Welcome to BookMyPlan, Please book Indian Railways tickets at 60% discount";
     }
 
-    @GetMapping("/local-railways")
+    @GetMapping("/superfast-railways")
     public String getLocalRailways() {
-        return "Hello Welcome to BookMyPlan, Please book local railways tickets at 30% discount";
+        return "Hello Welcome to BookMyPlan, Please book superfast railways tickets at 30% discount";
+        
+    @GetMapping("/pre-railways")
+    public String getLocalRailways() {
+        return "Hello Welcome to BookMyPlan, Please book pre railways tickets at 30% discount";        
+        
     }
 }
