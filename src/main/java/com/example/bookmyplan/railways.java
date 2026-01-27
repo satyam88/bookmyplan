@@ -10,4 +10,8 @@ public class railways {
     public String getData() {
         return "Hello Welcome to BookMyPlan, Please book railways tickets at 20% discount";
     }
+    @GetMapping("/local_railways")
+    public String getData() {
+        return "Hello Welcome to BookMyPlan, Please book railways tickets at 20% discount";
+    }    
 }
