@@ -20,4 +20,9 @@ public class railwayscontroller {
         return "Hello Welcome to BookMyPlan, Please book pre railways tickets at 30% discount";        
         
     }
+
+    @GetMapping("/goods-railways")
+    public String getIocalRailways() {
+        return "Hello Welcome to BookMyPlan, Please book goods railways tickets at 30% discount";
+    }
 }
