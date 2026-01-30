@@ -25,10 +25,14 @@ pipeline {
                 echo 'JUnit Test Cases Completed Successfully!'
             }
         }
+
         stage('Code Package') {
             steps {
                 echo 'Creating WAR Artifact...'
                 sh 'mvn clean package'
+                sh '''
+                    mv target/*.war target/myapp-${BUILD_NUMBER}.war
+                '''
                 echo 'WAR Artifact Created Successfully!'
             }
         }
