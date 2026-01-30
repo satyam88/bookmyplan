@@ -31,7 +31,7 @@ pipeline {
                 echo 'Creating WAR Artifact...'
                 sh 'mvn clean package'
                 sh '''
-                    mv target/*.war target/myapp-${BUILD_NUMBER}.war
+                    mv target/*.jar target/bookmyplan-${BUILD_NUMBER}.jar
                 '''
                 echo 'WAR Artifact Created Successfully!'
             }
