@@ -26,12 +26,12 @@ pipeline {
             }
         }
 
-        stage('Code Package') {
+       stage('Code Package') {
             steps {
                 echo 'Creating WAR Artifact...'
                 sh 'mvn clean package'
                 sh '''
-                    mv target/*.jar target/bookmyplan-${BUILD_NUMBER}.jar
+                    mv target/*.jar target/bookmyplan-1.1.${BUILD_NUMBER}.jar
                 '''
                 echo 'WAR Artifact Created Successfully!'
             }
