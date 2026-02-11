@@ -18,6 +18,7 @@ pipeline {
                 echo 'Code Compilation Completed Successfully!'
             }
         }
+
         stage('Code QA Execution') {
             steps {
                 echo 'Running JUnit Test Cases...'
@@ -25,23 +26,25 @@ pipeline {
                 echo 'JUnit Test Cases Completed Successfully!'
             }
         }
-#        stage('SonarQube Code Quality') {
-#            environment {
-#                scannerHome = tool 'qube'
-#            }
-#            steps {
-#                echo 'Starting SonarQube Code Quality Scan...'
-#                withSonarQubeEnv('sonar-server') {
-#                    sh 'mvn sonar:sonar'
-#                }
-#                echo 'SonarQube Scan Completed. Checking Quality Gate...'
-#                timeout(time: 10, unit: 'MINUTES') {
-#                    waitForQualityGate abortPipeline: true
-#                }
-#                echo 'Quality Gate Check Completed!'
-#            }
-#        }
-       stage('Code Package') {
+
+        // stage('SonarQube Code Quality') {
+        //     environment {
+        //         scannerHome = tool 'qube'
+        //     }
+        //     steps {
+        //         echo 'Starting SonarQube Code Quality Scan...'
+        //         withSonarQubeEnv('sonar-server') {
+        //             sh 'mvn sonar:sonar'
+        //         }
+        //         echo 'SonarQube Scan Completed. Checking Quality Gate...'
+        //         timeout(time: 10, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //         echo 'Quality Gate Check Completed!'
+        //     }
+        // }
+
+        stage('Code Package') {
             steps {
                 echo 'Creating WAR Artifact...'
                 sh 'mvn clean package'
@@ -50,7 +53,8 @@ pipeline {
                 '''
                 echo 'WAR Artifact Created Successfully!'
             }
-       }
+        }
+
         stage('Build & Tag Docker Image') {
             steps {
                 echo 'Building Docker Image and Tagging...'
@@ -58,12 +62,14 @@ pipeline {
                 echo 'Docker Image Build Completed!'
             }
         }
+
         stage('Docker Image Scanning') {
             steps {
                 echo 'Scanning Docker Image with Trivy...'
                 echo 'Docker Image Scanning Completed!'
             }
         }
+
         stage('Push Docker Image to Amazon ECR') {
             steps {
                 script {
@@ -79,6 +85,7 @@ pipeline {
                 }
             }
         }
+
         stage('Clean Up Local Docker Images') {
             steps {
                 echo 'Cleaning Up Local Docker Images...'
@@ -90,5 +97,6 @@ pipeline {
                 '''
                 echo 'Local Docker Images Cleaned Up Successfully!'
             }
+        }
     }
 }
