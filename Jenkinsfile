@@ -96,7 +96,19 @@ pipeline {
                 }
             }
         }
-
+        stage('Upload Docker Image to Nexus') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh 'docker login http://65.0.76.100:8085/repository/bookmyplan/ -u admin -p ${PASSWORD}'
+                        echo "Push Docker Image to Nexus : In Progress"
+                        sh 'docker tag bookmyplan 65.0.76.100:8085/bookmyplan:latest'
+                        sh 'docker push 65.0.76.100:8085/bookmyplan'
+                        echo "Push Docker Image to Nexus : Completed"
+                    }
+                }
+            }
+        }
         stage('Clean Up Local Docker Images') {
             steps {
                 echo 'Cleaning Up Local Docker Images...'
